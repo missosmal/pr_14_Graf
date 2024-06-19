@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
-    public void onClickRegin(View view){
+    public void onClickReg(View view){
         setContentView(R.layout.step_1);
         firstname = findViewById(R.id.firstname);
         lastname = findViewById(R.id.lastname);
@@ -119,5 +119,59 @@ public class MainActivity extends AppCompatActivity {
             w = findViewById(R.id.w);
         }
     }
+    boolean tr1 = false;
+    boolean tr2 = false;
+    boolean tr3 = false;
+    boolean tr4 = false;
+    public void onClickStep5(View view){
+        if(!m.isChecked() && !w.isChecked()) AlertDialog("Уведомление", "Выберите ваш пол!");
+        else {
+            setContentView(R.layout.main);
+            training1 = findViewById(R.id.training1);
+            training2 = findViewById(R.id.training2);
+            training3 = findViewById(R.id.training3);
+            training4 = findViewById(R.id.training4);
+            if(cb1.isChecked()) {training1.setVisibility(View.VISIBLE); tr1 = true;}
+            if(cb2.isChecked()) {training2.setVisibility(View.VISIBLE); tr2 = true;}
+            if(cb3.isChecked()) {training3.setVisibility(View.VISIBLE); tr3 = true;}
+            if(cb4.isChecked()) {training4.setVisibility(View.VISIBLE); tr4 = true;}
+            editor.putBoolean("training1", tr1);
+            editor.putBoolean("training2", tr2);
+            editor.putBoolean("training3", tr3);
+            editor.putBoolean("training4", tr4);
+            editor.commit();
+        }
+    }
 
+    public void onClickTraining1(View view){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/FO4DY-SzhzY?si=ZAVYFFRqrCA02s7I"));
+        startActivity(browserIntent);
+    }
+
+    public void onClickTraining2(View view){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/DbTpCo6nWPI?si=vWMRK2i6XGM6C4UA"));
+        startActivity(browserIntent);
+    }
+
+    public void onClickTraining3(View view){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/W5b-0EVNtQQ?si=HdS1n1VIaRzOzjvb"));
+        startActivity(browserIntent);
+    }
+
+    public void onClickTraining4(View view){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/FLaanOS_MNM?si=4u7uTnSR8I67iPu4"));
+        startActivity(browserIntent);
+    }
+
+    public void onClickAut(View view){
+        setContentView(R.layout.main);
+        training1 = findViewById(R.id.training1);
+        training2 = findViewById(R.id.training2);
+        training3 = findViewById(R.id.training3);
+        training4 = findViewById(R.id.training4);
+        if(sharedPreferences.getBoolean("training1", true)) training1.setVisibility(View.VISIBLE);
+        if(sharedPreferences.getBoolean("training2", true)) training2.setVisibility(View.VISIBLE);
+        if(sharedPreferences.getBoolean("training3", true)) training3.setVisibility(View.VISIBLE);
+        if(sharedPreferences.getBoolean("training4", true)) training4.setVisibility(View.VISIBLE);
+    }
 }
